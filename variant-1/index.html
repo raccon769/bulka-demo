@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BULKA — Пицца, роллы, бургеры</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Manrope", sans-serif;
+    background: #171717;
+    color: #fff;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root {
+    --orange: #ff6422;
+    --orange-dark: #e94d10;
+
+    --bg: #171717;
+    --bg2: #202020;
+    --bg3: #272727;
+
+    --text: #ffffff;
+    --muted: #8e8e8e;
+
+    --border: #303030;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    background: rgba(23,23,23,.92);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.nav {
+    max-width: 1300px;
+
+    height: 78px;
+
+    margin: auto;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 30px;
+
+    font-weight: 900;
+
+    letter-spacing: -2px;
+}
+
+.logo span {
+    color: var(--orange);
+}
+
+.nav-menu {
+    display: flex;
+
+    gap: 30px;
+}
+
+.nav-menu a {
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: .2s;
+}
+
+.nav-menu a:hover {
+    color: white;
+}
+
+.cart-button {
+    border: none;
+
+    background: var(--orange);
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.cart-button:hover {
+    background: var(--orange-dark);
+
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    max-width: 1300px;
+
+    margin: auto;
+
+    padding: 45px 25px 70px;
+
+    display: grid;
+
+    grid-template-columns: .9fr 1.1fr;
+
+    gap: 25px;
+}
+
+.hero-left {
+    min-height: 600px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #252525,
+            #191919
+        );
+
+    border-radius: 28px;
+
+    padding: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero-left::after {
+    content: "B";
+
+    position: absolute;
+
+    right: -20px;
+    bottom: -80px;
+
+    font-size: 330px;
+
+    font-weight: 900;
+
+    color: rgba(255,255,255,.025);
+
+    line-height: 1;
+}
+
+.hero-label {
+    color: var(--orange);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 6vw, 88px);
+
+    line-height: .92;
+
+    letter-spacing: -5px;
+
+    font-weight: 900;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.hero h1 span {
+    color: var(--orange);
+}
+
+.hero-text {
+    color: #999;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    max-width: 440px;
+
+    margin-top: 25px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.hero-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.hero-primary {
+    background: var(--orange);
+
+    color: white;
+
+    border: none;
+
+    padding: 16px 23px;
+
+    border-radius: 10px;
+
+    font-weight: 800;
+}
+
+.hero-secondary {
+    background: #303030;
+
+    color: white;
+
+    border: none;padding: 16px 23px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+}
+
+/* HERO PHOTO */
+
+.hero-photo {
+    min-height: 600px;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.65),
+            transparent 55%
+        ),
+        url("https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1500&q=90");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+.hero-photo-content {
+    position: absolute;
+
+    left: 35px;
+    bottom: 35px;
+}
+
+.hero-photo-content span {
+    display: inline-block;
+
+    background: var(--orange);
+
+    padding: 7px 12px;
+
+    border-radius: 50px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.hero-photo-content h2 {
+    font-size: 32px;
+
+    font-weight: 900;
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section {
+    max-width: 1300px;
+
+    margin: auto;
+
+    padding: 90px 25px;
+}
+
+.section-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 35px;
+}
+
+.section-heading h2 {
+    font-size: 43px;
+
+    letter-spacing: -2px;
+}
+
+.section-heading p {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+/* =====================================================
+   PROMO
+===================================================== */
+
+.promo-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.4fr
+        1fr
+        1fr;
+
+    gap: 15px;
+}
+
+.promo-card {
+    min-height: 260px;
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.promo-card:first-child {
+    background:
+        linear-gradient(
+            110deg,
+            #ff6422,
+            #d9430d
+        );
+}
+
+.promo-card:nth-child(2) {
+    background:
+        linear-gradient(
+            135deg,
+            #2b2b2b,
+            #202020
+        );
+}
+
+.promo-card:nth-child(3) {
+    background:
+        linear-gradient(
+            135deg,
+            #333,
+            #202020
+        );
+}
+
+.promo-card h3 {
+    font-size: 26px;
+
+    line-height: 1.1;
+
+    max-width: 300px;
+}
+
+.promo-card p {
+    color: rgba(255,255,255,.7);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    max-width: 300px;
+
+    margin-top: 12px;
+}
+
+.promo-big {
+    font-size: 90px;
+
+    font-weight: 900;
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: -25px;
+
+    opacity: .15;
+}
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+.categories {
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+
+    margin-bottom: 30px;
+}
+
+.category {
+    flex-shrink: 0;
+
+    border: 1px solid #3a3a3a;
+
+    background: #202020;
+
+    color: #aaa;
+
+    padding: 12px 20px;
+
+    border-radius: 50px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: .2s;
+}
+
+.category:hover,
+.category.active {
+    background: var(--orange);
+
+    border-color: var(--orange);
+
+    color: white;
+}
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+.products {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+.product {
+    background: #202020;
+
+    border: 1px solid #2c2c2c;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transition: .25s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+
+    border-color: #454545;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.25);
+}
+
+.product-image {
+    height: 210px;
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+.product-content {
+    padding: 18px;
+}
+
+.product-content h3 {
+    font-size: 17px;
+
+    margin-bottom: 8px;
+}
+
+.product-content p {
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    min-height: 36px;
+}
+
+.product-bottom {
+    display: f
+
+
+lex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 17px;
+}
+
+.price {
+    font-size: 20px;
+
+    font-weight: 900;
+}
+
+.add {
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--orange);
+
+    color: white;
+
+    font-size: 23px;
+
+    transition: .2s;
+}
+
+.add:hover {
+    background: var(--orange-dark);
+
+    transform: scale(1.05);
+}
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about {
+    max-width: 1300px;
+
+    margin: auto;
+
+    padding: 0 25px 90px;
+}
+
+.about-box {
+    background: #202020;
+
+    border-radius: 28px;
+
+    padding: 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.about h2 {
+    font-size: 52px;
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+}
+
+.about h2 span {
+    color: var(--orange);
+}
+
+.about-text {
+    color: #888;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.about-stats {
+    display: flex;
+
+    gap: 40px;
+
+    margin-top: 30px;
+}
+
+.stat strong {
+    display: block;
+
+    font-size: 25px;
+
+    color: white;
+}
+
+.stat span {
+    color: #777;
+
+    font-size: 11px;
+}
+
+/* =====================================================
+   CONTACTS
+===================================================== */
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.contact-card {
+    background: #202020;
+
+    border: 1px solid #2b2b2b;
+
+    border-radius: 20px;
+
+    padding: 30px;
+}
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #2b2b2b;
+
+    border-radius: 12px;
+
+    margin-bottom: 20px;
+}
+
+.contact-card h3 {
+    margin-bottom: 8px;
+}
+
+.contact-card p {
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.contact-card a {
+    color: var(--orange);
+
+    text-decoration: none;
+
+    font-weight: 800;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background: #101010;
+
+    border-top: 1px solid #292929;
+
+    padding: 55px 25px;
+}
+
+.footer-inner {
+    max-width: 1300px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 38px;
+
+    font-weight: 900;
+
+    letter-spacing: -3px;
+}
+
+.footer-logo span {
+    color: var(--orange);
+}
+
+.footer-info {
+    color: #666;
+
+    font-size: 12px;
+
+    text-align: right;
+
+    line-height: 1.7;
+}
+
+/* =====================================================
+   CART
+===================================================== */
+
+.cart {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 390px;
+
+    max-width:
+        calc(100% - 40px);
+
+    background: #222;
+
+    border:
+        1px solid #3a3a3a;
+
+    border-radius: 22px;
+
+    padding: 24px;
+
+    z-index: 2000;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.6);
+
+    transform:
+        translateY(150%);
+
+    transition: .35s;
+}
+
+.cart.open {
+    transform:
+        translateY(0);
+}
+
+.cart-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.cart-header h3 {
+    font-size: 22px;
+}
+
+.close {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #333;
+
+    color: white;
+
+    font-size: 20px;
+}
+
+.cart-items {
+    max-height: 260px;
+
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #333;
+
+    font-size: 13px;
+}
+
+.cart-item-left {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.cart-item-left small {
+    color: #777;
+}
+
+.cart-remove {
+    background: transparent;
+
+    border: none;
+
+    color: #777;
+
+    font-size: 17px;
+}
+
+.cart-total
+
+
+{
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    padding: 20px 0;
+}
+
+.checkout {
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--orange);
+
+    color: white;
+
+    font-weight: 900;
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.75);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3000;
+
+    padding: 20px;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-box {
+    width: 450px;
+
+    max-width: 100%;
+
+    background: #222;
+
+    border: 1px solid #3b3b3b;
+
+    border-radius: 22px;
+
+    padding: 30px;
+}
+
+.modal-box h3 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.modal-box p {
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.modal-box input {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #3a3a3a;
+
+    background: #171717;
+
+    color: white;
+
+    border-radius: 10px;
+
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.modal-actions button {
+    flex: 1;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-weight: 800;
+}
+
+.cancel {
+    background: #333;
+
+    color: white;
+}
+
+.send {
+    background: var(--orange);
+
+    color: white;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+max-width: 1000px {
+
+    .nav-menu {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-left,
+    .hero-photo {
+        min-height: 500px;
+    }
+
+    .products {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .promo-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .promo-card:first-child {
+        grid-column: span 2;
+    }
+
+    .about-box {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+max-width: 600px {
+
+    .nav {
+        height: 68px;
+
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+
+    .cart-button {
+        padding: 10px 14px;
+
+        font-size: 12px;
+    }
+
+    .hero {
+        padding:
+            25px 18px 50px;
+    }
+
+    .hero-left {
+        min-height: 520px;
+
+        padding: 35px 25px;
+
+        border-radius: 22px;
+    }
+
+    .hero h1 {
+        font-size: 58px;
+
+        letter-spacing: -4px;
+    }
+
+    .hero-photo {
+        min-height: 430px;
+
+        border-radius: 22px;
+    }
+
+    .hero-photo-content {
+        left: 25px;
+        bottom: 25px;
+    }
+
+    .section {
+        padding: 70px 18px;
+    }
+
+    .section-heading {
+        display: block;
+    }
+
+    .section-heading h2 {
+        font-size: 35px;
+
+        margin-bottom: 7px;
+    }
+
+    .promo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-card:first-child {
+        grid-column: auto;
+    }
+
+    .promo-card {
+        min-height: 210px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 230px;
+    }
+
+    .about {
+        padding:
+            0 18px 70px;
+    }
+
+    .about-box {
+        padding: 35px 25px;
+
+        border-radius: 22px;
+    }
+
+    .about h2 {
+        font-size: 42px;
+    }
+
+    .about-stats {
+        gap: 25px;
+    }
+
+    .footer-inner {
+        display: block;
+    }
+
+    .footer-info {
+        text-align: left;
+
+        margin-top: 20px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<div class="nav">
+
+    <div class="logo">
+        BUL<span>K</span>A
+    </div>
+
+    <nav class="nav-menu">
+
+        <a href="#menu">
+            Меню
+        </a>
+
+
+<a href="#promos">
+            Акции
+        </a>
+
+        <a href="#about">
+            О нас
+        </a>
+
+        <a href="#contacts">
+            Контакты
+        </a>
+
+    </nav>
+
+    <button
+        class="cart-button"
+        onclick="openCart()"
+    >
+        🛒 Корзина
+        <span id="cartCount">0</span>
+    </button>
+
+</div>
+
+</header>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+    <div class="hero-label">
+        BULKA · УГЛИЧ
+    </div>
+
+    <h1>
+        ВКУСНО
+
+        <span>БЕЗ</span>
+
+        ЛИШНЕГО
+    </h1>
+
+    <p class="hero-text">
+
+        Пицца, роллы, бургеры, шаурма
+        и многое другое.
+        Заказывай любимые блюда
+        домой или забирай с собой.
+
+    </p>
+
+    <div class="hero-actions">
+
+        <button
+            class="hero-primary"
+            onclick="scrollToMenu()"
+        >
+            Смотреть меню
+        </button>
+
+        <button
+            class="hero-secondary"
+            onclick="openCart()"
+        >
+            Мой заказ
+        </button>
+
+    </div>
+
+</div>
+
+<div class="hero-photo">
+
+    <div class="hero-photo-content">
+
+        <span>
+            Доставка
+        </span>
+
+        <h2>
+            Горячее
+
+            рядом.
+        </h2>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     PROMOS
+===================================================== -->
+
+<section
+    class="section"
+    id="promos"
+>
+
+<div class="section-heading">
+
+    <div>
+
+        <h2>
+            Акции
+        </h2>
+
+        <p>
+            Выгодные предложения BULKA
+        </p>
+
+    </div>
+
+</div>
+
+<div class="promo-grid">
+
+<div class="promo-card">
+
+    <h3>
+        3 пиццы → 4-я в подарок
+    </h3>
+
+    <p>
+        Акция действует на пиццы
+        40 и 50 см.
+    </p>
+
+    <div class="promo-big">
+        3+1
+    </div>
+
+</div>
+
+<div class="promo-card">
+
+    <h3>
+        Комбо 1
+    </h3>
+
+    <p>
+        Пицца Рустика,
+        картофель, чизбургер,
+        соусы и лимонад.
+    </p>
+
+    <div class="promo-big">
+        509
+    </div>
+
+</div>
+
+<div class="promo-card">
+
+    <h3>
+        Комбо 2
+    </h3>
+
+    <p>
+        Пицца, картофель,
+        жареный ролл,
+        соусы и лимонад.
+    </p>
+
+    <div class="promo-big">
+        599
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<section
+    class="section"
+    id="menu"
+>
+
+<div class="section-heading">
+
+    <div>
+
+        <h2>
+            Меню
+        </h2>
+
+        <p>
+            Выбирай то, чего хочется прямо сейчас
+        </p>
+
+    </div>
+
+</div>
+
+<div class="categories">
+
+    <button
+        class="category active"
+        onclick="filterProducts('all', this)"
+    >
+        Всё
+    </button>
+
+    <button
+        class="category"
+        onclick="filterProducts('pizza', this)"
+    >
+        🍕 Пицца
+    </button>
+
+    <button
+        class="category"
+        onclick="filterProducts('rolls', this)"
+    >
+        🍣 Роллы
+    </button>
+
+    <button
+        class="category"
+        onclick="filterProducts('burgers', this)"
+    >
+        🍔 Бургеры
+    </button>
+
+    <button
+        class="category"
+        onclick="filterProducts('shawarma', this)"
+    >
+        🌯 Шаурма
+    </button>
+
+    <button
+        class="category"
+        onclick="filterProducts('snacks', this)"
+    >
+        🍟 Закуски
+    </button>
+
+    <button
+        class="category"
+        onclick="filterProducts('combo', this)"
+    >
+        🔥 Комбо
+    </button>
+
+</div>
+
+<div
+    class="products"
+    id="products"
+></div>
+
+</section>
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    class="about"
+    id="about"
+>
+
+<div class="about-box">
+
+    <div>
+
+        <h2>
+
+
+Место,
+
+            куда хочется
+
+            <span>вернуться.</span>
+        </h2>
+
+    </div>
+
+    <div>
+
+        <p class="about-text">
+
+            BULKA — кафе в Угличе
+            с пиццей, роллами, бургерами,
+            шаурмой и закусками.
+
+            
+
+            Можно заказать доставку,
+            забрать еду с собой
+            или прийти к нам.
+
+        </p>
+
+        <div class="about-stats">
+
+            <div class="stat">
+
+                <strong>
+                    10:00
+                </strong>
+
+                <span>
+                    Открываемся
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <strong>
+                    23:00
+                </strong>
+
+                <span>
+                    Закрываемся
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <strong>
+                    7/7
+                </strong>
+
+                <span>
+                    Каждый день
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     CONTACTS
+===================================================== -->
+
+<section
+    class="section"
+    id="contacts"
+>
+
+<div class="section-heading">
+
+    <div>
+
+        <h2>
+            Контакты
+        </h2>
+
+        <p>
+            Будем рады видеть тебя
+        </p>
+
+    </div>
+
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+
+    <div class="contact-icon">
+        📍
+    </div>
+
+    <h3>
+        Адрес
+    </h3>
+
+    <p>
+        г. Углич
+
+        ул. Октябрьская, 4
+    </p>
+
+</div>
+
+<div class="contact-card">
+
+    <div class="contact-icon">
+        🕐
+    </div>
+
+    <h3>
+        Время работы
+    </h3>
+
+    <p>
+        Ежедневно
+
+        10:00 — 23:00
+    </p>
+
+</div>
+
+<div class="contact-card">
+
+    <div class="contact-icon">
+        📞
+    </div>
+
+    <h3>
+        Заказ
+    </h3>
+
+    <p>
+        <a href="tel:+79807001199">
+            +7 (980) 700-11-99
+        </a>
+    </p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="footer-inner">
+
+    <div class="footer-logo">
+        BUL<span>K</span>A
+    </div>
+
+    <div class="footer-info">
+
+        Октябрьская улица, 4
+
+        Углич · 10:00 — 23:00
+
+        +7 (980) 700-11-99
+
+    </div>
+
+</div>
+
+</footer>
+
+<!-- =====================================================
+     CART
+===================================================== -->
+
+<div
+    class="cart"
+    id="cart"
+>
+
+<div class="cart-header">
+
+    <h3>
+        Корзина
+    </h3>
+
+    <button
+        class="close"
+        onclick="closeCart()"
+    >
+        ×
+    </button>
+
+</div>
+
+<div
+    class="cart-items"
+    id="cartItems"
+>
+    В корзине пока пусто
+</div>
+
+<div class="cart-total">
+
+    <span>
+        Итого
+    </span>
+
+    <span id="cartTotal">
+        0 ₽
+    </span>
+
+</div>
+
+<button
+    class="checkout"
+    onclick="checkout()"
+>
+    Перейти к оформлению
+</button>
+
+</div>
+
+<!-- =====================================================
+     CHECKOUT MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="modal"
+>
+
+<div class="modal-box">
+
+    <h3>
+        Оформление заказа
+    </h3>
+
+    <p>
+        Это демонстрационная версия.
+        Здесь в настоящем сайте можно
+        подключить оплату и доставку.
+    </p>
+
+    <input
+        type="text"
+        placeholder="Ваше имя"
+    >
+
+    <input
+        type="tel"
+        placeholder="Телефон"
+    >
+
+    <input
+        type="text"
+        placeholder="Адрес доставки"
+    >
+
+    <div class="modal-actions">
+
+        <button
+            class="cancel"
+            onclick="closeModal()"
+        >
+            Назад
+        </button>
+
+        <button
+            class="send"
+            onclick="demoOrder()"
+        >Заказать
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+const products = [
+
+/* PIZZA */
+
+{
+    id: 1,
+    name: "Маргарита",
+    category: "pizza",
+    price: 310,
+
+    image:
+    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Томатный соус, томаты, моцарелла, итальянские травы."
+},
+
+{
+    id: 2,
+    name: "Пепперони",
+    category: "pizza",
+    price: 430,
+
+    image:
+    "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Пикантная пепперони, томатный соус и моцарелла."
+},
+
+{
+    id: 3,
+    name: "Чили",
+    category: "pizza",
+    price: 400,
+
+    image:
+    "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Ветчина, колбаса, чили, халапеньо и моцарелла."
+},
+
+{
+    id: 4,
+    name: "Рустика",
+    category: "pizza",
+    price: 430,
+
+    image:
+    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Ветчина, салями, грибы, томаты и моцарелла."
+},
+
+{
+    id: 5,
+    name: "Филадельфия",
+    category: "pizza",
+    price: 795,
+
+    image:
+    "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Лосось, томаты, моцарелла и сырный соус."
+},
+
+{
+    id: 6,
+    name: "Тропикана",
+    category: "pizza",
+    price: 460,
+
+    image:
+    "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Ананасы, бекон, курица и моцарелла."
+},
+
+/* ROLLS */
+
+{
+    id: 7,
+    name: "Фиш ролл",
+    category: "rolls",
+    price: 315,
+
+    image:
+    "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Креветка темпура, томаты, салат, моцарелла и соус."
+},
+
+{
+    id: 8,
+    name: "Чикен ролл",
+    category: "rolls",
+    price: 265,
+
+    image:
+    "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Хрустящая курочка, томаты, салат и сыр."
+},
+
+{
+    id: 9,
+    name: "Биф ролл",
+    category: "rolls",
+    price: 295,
+
+    image:
+    "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Говяжья котлета, овощи и фирменный соус."
+},
+
+/* BURGERS */
+
+{
+    id: 10,
+    name: "Чизбургер",
+    category: "burgers",
+    price: 580,
+
+    image:
+    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Говядина, бекон, огурцы, лук, томаты и два вида сыра."
+},
+
+{
+    id: 11,
+    name: "Бургер с хашбрауном",
+    category: "burgers",
+    price: 450,
+
+    image:
+    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Хрустящий хашбраун, грибы и мягкая булочка."
+},
+
+/* SHAWARMA */
+
+{
+    id: 12,
+    name: "Шаурма",
+    category: "shawarma",
+    price: 199,
+
+    image:
+    "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Курица, овощи, морковь по-корейски и фирменный соус."
+},
+
+/* SNACKS */
+
+{
+    id: 13,
+    name: "Картофель фри",
+    category: "snacks",
+    price: 90,
+
+    image:
+    "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Хрустящий картофель фри."
+},
+
+{
+    id: 14,
+    name: "Сырные палочки",
+    category: "snacks",
+    price: 250,
+
+    image:
+    "https://images.unsplash.com/photo-1548340748-6d2b7d7a7a5d?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Сырные палочки в хрустящем кляре."
+},
+
+{
+    id: 15,
+    name: "Крылышки 6 шт",
+    category: "snacks",
+    price: 295,
+
+    image:
+    "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Острые куриные крылышки."
+},
+
+{
+    id: 16,
+    name: "Стрипсы 6 шт",
+    category: "snacks",
+    price: 195,
+
+    image:
+    "https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Хрустящие куриные стрипсы."
+},
+
+/* COMBO */
+
+{
+    id: 17,
+    name: "Комбо 1",
+    category: "combo",
+    price: 509,
+
+    image:
+    "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Пицца Рустика, картофель, чизбургер, соусы и лимонад."
+},
+
+{
+    id: 18,
+    name: "Комбо 2",
+    category: "combo",
+    price: 599,
+
+    image:
+    "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Пицца, картофель, жареный ролл, соусы и лимонад."
+},
+
+{
+    id: 19,
+    name: "Комбо Сурими",
+    category: "combo",
+    price: 759,
+
+    image:
+    "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Запечённый ролл, горячий ролл, сырные палочки и лимонад."
+},
+
+{
+    id: 20,
+    name: "Комбо 4 пиццы",
+    category: "combo",
+    price: 1329,
+
+    image:
+    "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=90",
+
+    description:
+    "Большой набор из четырёх пицц для компании."
+}
+
+];
+
+/* =====================================================
+   CART
+===================================================== */
+
+let cart = [];
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(category = "all") {
+
+    const container =
+        document.getElementById("products");
+
+    const filtered =
+        category === "all"
+
+        ? products
+
+        : products.filter(
+            product =>
+            product.category === category
+        );
+
+    container.innerHTML =
+        filtered.map(product => `
+
+        <article class="product">
+
+            <div
+                class="product-image"
+                style="
+                background-image:
+                url('${product.image}')
+                "
+            ></div>
+
+            <div class="product-content">
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+                <p>
+                    ${product.description}
+                </p>
+
+                <div class="product-bottom">
+
+                    <div class="price">
+                        ${product.price} ₽
+                    </div>
+
+                    <button
+                        class="add"
+                        onclick="
+                        addToCart(${product.id})
+                        "
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        `).join("");
+}
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function filterProducts(category, button) {
+
+    document
+        .querySelectorAll(".category")
+        .forEach(
+            item =>
+            item.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    renderProducts(category);
+}
+
+/* =====================================================
+   ADD TO CART
+===================================================== */
+
+function addToCart(id) {
+
+    const product =
+        products.find(
+            item =>
+            item.id === id
+        );
+
+    cart.push(product);
+
+    updateCart();
+
+    openCart();
+}
+
+/* =====================================================
+   UPDATE CART
+===================================================== */
+
+function updateCart() {
+
+    document.getElementById(
+        "cartCount"
+
+
+).textContent =
+        cart.length;
+
+    const container =
+        document.getElementById(
+            "cartItems"
+        );
+
+    if (cart.length === 0) {
+
+        container.innerHTML =
+            "В корзине пока пусто";
+
+        document.getElementById(
+            "cartTotal"
+        ).textContent =
+            "0 ₽";
+
+        return;
+    }
+
+    container.innerHTML =
+        cart.map(
+            (item, index) => `
+
+            <div class="cart-item">
+
+                <div class="cart-item-left">
+
+                    <strong>
+                        ${item.name}
+                    </strong>
+
+                    <small>
+                        ${item.price} ₽
+                    </small>
+
+                </div>
+
+                <button
+                    class="cart-remove"
+                    onclick="
+                    removeFromCart(${index})
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+            `
+        ).join("");
+
+    const total =
+        cart.reduce(
+            (sum, item) =>
+            sum + item.price,
+            0
+        );
+
+    document.getElementById(
+        "cartTotal"
+    ).textContent =
+        total + " ₽";
+}
+
+/* =====================================================
+   REMOVE
+===================================================== */
+
+function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+}
+
+/* =====================================================
+   CART OPEN / CLOSE
+===================================================== */
+
+function openCart() {
+
+    document
+        .getElementById("cart")
+        .classList.add("open");
+}
+
+function closeCart() {
+
+    document
+        .getElementById("cart")
+        .classList.remove("open");
+}
+
+/* =====================================================
+   CHECKOUT
+===================================================== */
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        alert(
+            "Сначала добавьте блюда в корзину 🙂"
+        );
+
+        return;
+    }
+
+    document
+        .getElementById("modal")
+        .classList.add("open");
+}
+
+function closeModal() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("open");
+}
+
+function demoOrder() {
+
+    alert(
+        "Спасибо! Это демо-версия сайта.\n\n" +
+        "В настоящей версии здесь можно " +
+        "подключить оформление заказа, " +
+        "оплату и доставку."
+    );
+}
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+function scrollToMenu() {
+
+    document
+        .getElementById("menu")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+/* =====================================================
+   START
+===================================================== */
+
+renderProducts();
+
+</script>
+
+</body>
+</html>

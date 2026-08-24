@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BULKA — Пицца, роллы и любимая еда</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #11100f;
+    color: #fff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    height: 78px;
+
+    background: rgba(17, 16, 15, 0.88);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.header-inner {
+    max-width: 1250px;
+    height: 100%;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.logo span {
+    color: #ff7518;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+    color: #c9c5c0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav a {
+    transition: .2s;
+}
+
+.nav a:hover {
+    color: #ff7518;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.phone {
+    font-size: 13px;
+    color: #c9c5c0;
+}
+
+.cart {
+    background: #ff7518;
+    color: white;
+
+    border: none;
+    border-radius: 13px;
+
+    padding: 12px 17px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 720px;
+
+    padding: 150px 25px 80px;
+
+    background:
+        radial-gradient(circle at 80% 30%, rgba(255,117,24,.28), transparent 35%),
+        radial-gradient(circle at 10% 80%, rgba(255,117,24,.10), transparent 30%),
+        #11100f;
+}
+
+.hero-inner {
+    max-width: 1250px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    background: rgba(255,117,24,.12);
+    border: 1px solid rgba(255,117,24,.25);
+
+    border-radius: 50px;
+
+    color: #ff914d;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: .95;
+    letter-spacing: -5px;
+
+    max-width: 650px;
+}
+
+.hero h1 span {
+    color: #ff7518;
+}
+
+.hero-text {
+    margin-top: 25px;
+
+    max-width: 500px;
+
+    color: #aaa39d;
+
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.btn-main {
+    border: none;
+
+    padding: 16px 25px;
+
+    border-radius: 14px;
+
+    background: #ff7518;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow: 0 15px 40px rgba(255,117,24,.18);
+}
+
+.btn-second {
+    padding: 16px 25px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* HERO IMAGE */
+
+.hero-image {
+    position: relative;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55),
+        0 0 80px rgba(255,117,24,.12);
+}
+
+.price-badge {
+    position: absolute;
+
+    bottom: 25px;
+    left: 25px;
+
+    background: #ff7518;
+
+    padding: 18px 22px;
+
+    border-radius: 18px;
+
+    font-weight: 900;
+}
+
+.price-badge small {
+    display: block;
+
+    font-size: 10px;
+    opacity: .75;
+
+    margin-bottom: 3px;
+}
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.categories {
+    padding: 25px 25px 90px;
+}
+
+.categories-inner {
+    max-width: 1250px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 15px;
+}
+
+.category {
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background: #1a1917;
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    transition: .25s;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,117,24,.4);
+}
+
+.category-icon {
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.category h3 {
+    font-size: 16px;
+}
+
+.category p {
+    margin-top: 6px;
+
+    color: #77716c;
+
+    font-size: 12px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    padding: 90px 25px;
+}
+
+.section-inner {
+    max-width: 1250px;
+    margin: auto;
+}
+
+.section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+}
+
+.section-title {
+    font-size: 42px;
+    letter-spacing: -2px;
+}
+
+.section-title span {
+    color: #ff7518;
+}
+
+.section-subtitle {
+    color: #77716c;
+    font-size: 13px;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 18px;
+}
+
+.product {
+    background: #1a1917;
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    border-radius: 23px;
+
+    overflow: hidden;
+
+    transition: .25s;
+}
+
+.product:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,117,24,.35);
+}
+
+.product-image {
+    height: 220px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .4s;
+}
+
+.product:hover .product-image img {
+    transform: scale(1.06);
+}
+
+.product-content {
+    padding: 20px;
+}
+
+.product-content h3 {
+    font-size: 17px;
+}
+
+.product-description {
+    margin-top: 8px;
+
+    color: #77716c;
+
+    font-size: 12px;
+    line-height: 1.5;
+
+    min-height: 38px;
+}
+
+.product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 18px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.add {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #ff7518;
+    color: white;
+
+    font-size: 21px;
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+/* =========================
+   PROMO
+========================= */
+
+.promo {
+    padding: 30px 25px 100px;
+}
+
+.promo-inner {
+    max-width: 1250px;
+    margin: auto;
+
+    min-height: 300px;
+
+    border-radius: 30px;
+
+    padding: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(110deg, rgba(255,117,24,.95), rgba(196,67,4,.8)),
+        url("https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1400&q=80");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.promo h2 {
+    font-size: 44px;
+    letter-spacing: -2px;
+
+    max-width: 550px;
+}
+
+.promo p {
+    margin-top: 12px;
+
+    max-width: 500px;
+
+    color: rgba(255,255,255,.75);
+
+    line-height: 1.6;
+}
+
+.promo-button {
+    background: white;
+    color: #151311;
+
+    border: none;
+
+    padding: 17px 25px;
+
+    border-radius: 14px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+/* =========================
+   CONTACTS
+========================= */
+
+.contacts {
+    padding: 90px 25px;
+}
+
+.contacts-inner {
+    max-width: 1250px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.contact-card {
+    background: #1a1917;
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    border-radius: 25px;
+
+    padding: 35px;
+}
+
+.contact-card h3 {
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.contact-row {
+    padding: 17px 0;
+
+    border-bottom: 1px solid rgba(255,255,255,.06);
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #aaa39d;
+
+    font-size: 14px;
+}
+
+.contact-row strong {
+    color: white;
+}
+
+.map {
+    min-height: 330px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-label {
+    background: rgba(17,16,15,.9);
+
+    padding: 17px 22px;
+
+    border-radius: 15px;
+
+    font-weight: 800;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid rgba(255,255,255,.06);
+
+    padding: 35px 25px;
+
+    color: #6f6a65;
+
+    font-size: 12px;
+}
+
+.footer-inner {
+    max-width: 1250px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-logo {
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.footer-logo span {
+    color: #ff7518;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+max-width: 950px {
+
+    .nav {
+        display: none;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image img {
+        height: 400px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .categories-inner {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .contacts-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+}
+
+max-width: 600px {
+
+    .header {
+        height: 68px;
+    }
+
+    .phone {
+        display: none;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero-image img {
+        height: 330px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .categories-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .promo-inner {
+        padding: 30px;
+    }
+
+    .promo h2 {
+        font-size: 34px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="header-inner">
+
+        <div class="logo">
+            BULK<span>A</span>
+        </div>
+
+        <nav class="nav">
+            <a href="#menu">Меню</a>
+            <a href="#promo">Акции</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+        <div class="header-right">
+            <div class="phone">
+                +7 (48532) 2-XX-XX
+            </div>
+
+            <button class="cart">
+                🛒 Корзина
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="hero-text-block">
+
+            <div class="hero-label">
+                🔥 Свежее каждый день
+            </div>
+
+            <h1>
+                Вкусная еда.
+                <span>Без лишних слов.</span>
+            </h1>
+
+            <p class="hero-text">
+                Пицца, роллы и любимые блюда для хорошего вечера.
+                Выбирай то, что хочется прямо сейчас.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#menu" class="btn-main">
+                    Смотреть меню
+                </a>
+
+                <a href="#promo" class="btn-second">
+                    Акции →
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=85"
+                alt="Пицца"
+            >
+
+            <div class="price-badge">
+                <small>ХИТ</small>
+                Пицца от 490 ₽
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="categories">
+
+    <div class="categories-inner">
+
+        <div class="category">
+            <div class="category-icon">🍕</div>
+            <h3>Пицца</h3>
+            <p>Горячая и с хрустящей корочкой</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🍣</div>
+            <h3>Роллы</h3>
+            <p>Свежие ингредиенты каждый день</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🍔</div>
+            <h3>Бургеры</h3>
+            <p>Сочные и сытные</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🥤</div>
+            <h3>Напитки</h3>
+            <p>Идеальное дополнение к заказу</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MENU -->
+
+<section class="section" id="menu">
+
+    <div class="section-inner">
+
+        <div class="section-head">
+
+            <div>
+                <h2 class="section-title">
+                    Популярное <span>меню</span>
+                </h2>
+
+                <p class="section-subtitle">
+                    То, что чаще всего выбирают наши гости
+                </p>
+            </div>
+
+        </div>
+
+        <div class="products">
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80"
+                        alt="Пицца"
+                    >
+                </div>
+
+                <div class="product-content">
+
+                    <h3>Пицца Пепперони</h3>
+
+                    <p class="product-description">
+                        Пепперони, моцарелла, томатный соус
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <div class="product-price">
+                            590 ₽
+                        </div>
+
+                        <button class="add">+</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=80"
+                        alt="Роллы"
+                    >
+                </div>
+
+                <div class="product-content">
+
+                    <h3>Филадельфия</h3>
+
+                    <p class="product-description">
+                        Лосось, сливочный сыр, рис
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <div class="product-price">
+                            520 ₽
+                        </div>
+
+                        <button class="add">+</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80"
+                        alt="Бургер"
+                    >
+                </div>
+
+                <div class="product-content">
+
+                    <h3>Бургер BULKA</h3>
+
+                    <p class="product-description">
+                        Сочная котлета, сыр, овощи и фирменный соус
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <div class="product-price">
+                            490 ₽
+                        </div>
+
+                        <button class="add">+</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80"
+                        alt="Пицца"
+                    >
+                </div>
+
+                <div class="product-content">
+
+                    <h3>Четыре сыра</
+
+
+h3>
+
+                    <p class="product-description">
+                        Моцарелла, чеддер, пармезан и дорблю
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <div class="product-price">
+                            620 ₽
+                        </div>
+
+                        <button class="add">+</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROMO -->
+
+<section class="promo" id="promo">
+
+    <div class="promo-inner">
+
+        <div>
+
+            <h2>
+                Забери больше —
+                заплати меньше 🔥
+            </h2>
+
+            <p>
+                Специальные предложения и акции для наших гостей.
+                Следи за новостями и не пропускай выгодные предложения.
+            </p>
+
+        </div>
+
+        <button class="promo-button">
+            Все акции
+        </button>
+
+    </div>
+
+</section>
+
+<!-- CONTACTS -->
+
+<section class="contacts" id="contacts">
+
+    <div class="contacts-inner">
+
+        <div class="contact-card">
+
+            <h3>Мы рядом</h3>
+
+            <div class="contact-row">
+                <span>Адрес</span>
+                <strong>Углич</strong>
+            </div>
+
+            <div class="contact-row">
+                <span>Телефон</span>
+                <strong>+7 (48532) 2-XX-XX</strong>
+            </div>
+
+            <div class="contact-row">
+                <span>Время работы</span>
+                <strong>10:00 — 22:00</strong>
+            </div>
+
+            <div class="contact-row">
+                <span>Доставка</span>
+                <strong>Ежедневно</strong>
+            </div>
+
+        </div>
+
+        <div class="map">
+
+            <div class="map-label">
+                📍 BULKA — Углич
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div class="footer-logo">
+            BULK<span>A</span>
+        </div>
+
+        <div>
+            © 2026 BULKA
+        </div>
+
+        <div>
+            Пицца • Роллы • Хорошее настроение
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
